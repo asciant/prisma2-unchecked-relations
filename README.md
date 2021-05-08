@@ -1,5 +1,7 @@
 # prisma2-unchecked-relations
 
+This relates to https://github.com/prisma/prisma/issues/5788
+
 ## Actions Undertaken
 
 ### DBs
