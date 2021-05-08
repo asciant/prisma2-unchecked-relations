@@ -9,7 +9,8 @@
     "prisma": "2.22.1"
   },
   "scripts": {
-    "dev": "node ./script.js"
+    "dev": "node ./script.js",
+    "fail": "node ./failScript.js"
   },
   "engines": {
     "node": ">=10.0.0"
