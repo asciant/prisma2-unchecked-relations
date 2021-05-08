@@ -2,6 +2,8 @@
 
 This relates to https://github.com/prisma/prisma/issues/5788
 
+The example schema was taken from the [Prisma Relations Documentation](https://www.prisma.io/docs/concepts/components/prisma-schema/relations#types-of-relations)
+
 ## Actions Undertaken
 
 ### DBs
@@ -11,9 +13,8 @@ I tested on both SQLite and PostgreSQL 13.2.
 ### Setup
 
 1. `npm install`
-2. Copy the example Schema from the [Prisma Relations Documentation](https://www.prisma.io/docs/concepts/components/prisma-schema/relations#types-of-relations) into `schema.prisma`
-3. Reset database (delete the tables from the Quickstart database) and then run `npx prisma db push`
-4. Confirm tables were setup correctly (I used TablePlus for this)
+2. Reset database (delete the existing tables from the database - if any) and then run `npx prisma db push`
+3. Confirm tables were setup correctly (I used TablePlus for this)
 
 #### Working Example
 
@@ -55,6 +56,6 @@ type PostUncheckedCreateInput {
 
 #### Notes
 
-The thing that got me so confused with this, was that I had separate `update` statements in different files (that had made connections within the database row using the `authorId` method from `failScript.js`). It seems that connecting this way means that any future updates to that same database row will always use the `UncheckedCreateInput` or `UncheckedUpdateInput`.
+The thing that got me so confused with this, was that I had separate `update` statements in different files (that had successfully made connections within the database row using the `authorId` method from `failScript.js`). It seems that connecting this way means that any future updates to that same database row will always use the `UncheckedCreateInput` or `UncheckedUpdateInput`.
 
 Anyway, hope this helps anyone else who stumbles across this.
