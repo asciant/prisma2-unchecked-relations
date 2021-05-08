@@ -54,8 +54,3 @@ type PostUncheckedCreateInput {
 }
 ```
 
-#### Notes
-
-The thing that got me so confused with this, was that I had separate `update` statements in different files (that had successfully made connections within the database row using the `authorId` method from `failScript.js`). It seems that connecting this way means that any future updates to that same database row will always use the `UncheckedCreateInput` or `UncheckedUpdateInput`.
-
-Anyway, hope this helps anyone else who stumbles across this.

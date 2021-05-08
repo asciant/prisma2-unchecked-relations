@@ -34,32 +34,6 @@ async function main() {
         },
     })
 
-    // // Connect Post to a Category
-    // // This will fail 🙅🏻‍♂️
-    // const connectedPost = await prisma.post.update({
-    //     where: { id: newPost.id },
-    //     data: {
-    //         categories: {
-    //             connect: {
-    //                 id: newCategory.id
-    //             }
-    //         },
-    //      }
-    // })
-
-    // // Connect Category to a Post
-    // const connectedCategory = await prisma.category.update({
-    //     where: { id: newCategory.id },
-    //     data: {
-    //         posts: {
-    //             connect: {
-    //                 id: newPost.id
-    //             }
-    //         },
-    //         description: 'This will not fail'
-    //      }
-    // })
-
 }
 
 main()
