@@ -112,7 +112,7 @@ I tested on both SQLite and PostgreSQL 13.2.
 
 #### Failing Example 1
 
-*caused by trying to connect the ID directly, which still works, but not when trying to also use connect*
+*This error was caused by referencing the `authorId` field directly (which is only available in the Unchecked type `PostUncheckedCreateInput`). In isolation, it would create the 1-1 relation, the error is thrown here because the `PostUncheckedCreateInput` does not know about the `categories` relation. Referencing `authorId` directly, has resulted in Prisma utilising the `PostUncheckedCreateInput` type, as opposed to the desired `PostCreateInput`.*
 
 1. Do setup (if you didn't already do it in the working example)
 2. Run `npm run fail1`
@@ -146,7 +146,7 @@ type PostUncheckedCreateInput {
 
 #### Failing Example 2
 
-*caused by using the wrong datatype - id is a string*
+*This error was caused by using the wrong datatype in the ID (the ID is a string, whereas Prisma was looking for a number in `PostUpdateInput`). As a result, the `Unchecked` type (`PostUncheckedUpdateInput`) was used, which doesn't have access to the categories relation, or connect functionality. If the ID was a number, the typings would have matched and the desired `PostUpdateInput` type would have been used by Prisma, which has access to the categories relation (and connect functionality).*
 
 1. Do setup (if you didn't already do it in the working example)
 2. Run `npm run fail2`
@@ -171,7 +171,7 @@ Invalid `prisma.post.update()` invocation:
     categories: {
     ~~~~~~~~~~
       connect: {
-        id: '6' // <- note the id is a string - whereas id in CategoryWhereUniqueInput is looking for a number
+        id: '6' // <- note the id is a string - id in CategoryWhereUniqueInput is meant to be a number
       }
     }
   }
