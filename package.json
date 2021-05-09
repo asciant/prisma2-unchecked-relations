@@ -10,7 +10,8 @@
   },
   "scripts": {
     "dev": "node ./script.js",
-    "fail": "node ./failScript.js"
+    "fail1": "node ./failScript1.js",
+    "fail2": "node ./failScript2.js"
   },
   "engines": {
     "node": ">=10.0.0"
