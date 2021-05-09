@@ -92,27 +92,46 @@ This relates to https://github.com/prisma/prisma/issues/5788
 
 The example schema was taken from the [Prisma Relations Documentation](https://www.prisma.io/docs/concepts/components/prisma-schema/relations#types-of-relations)
 
-## Actions Undertaken
-
-### DBs
+## DBs
 
 I tested on both SQLite and PostgreSQL 13.2.
 
-### Setup
+## Setup
 
 1. `npm install`
 2. Reset database (delete the existing tables from the database - if any) and then run `npx prisma db push`
 3. Confirm tables were setup correctly (I used TablePlus for this)
 
-#### Working Example
+## Working Example
 
 1. Do setup
 2. Run `npm run dev`
 3. Check the database, category and post should be connected
 
-#### Failing Example 1
+## Failing Example 1
 
 *This error was caused by referencing the `authorId` field directly (which is only available in the Unchecked type `PostUncheckedCreateInput`). In isolation, it would create the 1-1 relation, the error is thrown here because the `PostUncheckedCreateInput` does not know about the `categories` relation. Referencing `authorId` directly, has resulted in Prisma utilising the `PostUncheckedCreateInput` type, as opposed to the desired `PostCreateInput`.*
+
+*Fixing this error is as simple as using the methodology from the `PostCreateInput` type. E.g.:*
+
+```
+// Create a post
+const newPost = await prisma.post.create({
+    data: {
+        // ✅
+        author: {
+            connect: {
+                id: newUser.id
+            }
+        },
+        categories: {
+            connect: {
+                id: newCategory.id
+            }
+        },
+    },
+})
+```
 
 1. Do setup (if you didn't already do it in the working example)
 2. Run `npm run fail1`
