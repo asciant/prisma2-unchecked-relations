@@ -4,7 +4,7 @@ The summary is, for Prisma to use the `PostCreateInput` or `PostUpdateInput` eve
 
 The `Arg` types:
 
-```
+```javascript
 /**
 * Post create
 */
@@ -48,7 +48,7 @@ where: PostWhereUniqueInput
 
 The input types:
 
-```
+```javascript
 export type PostCreateInput = {
     author: UserCreateNestedOneWithoutPostsInput
     categories?: CategoryCreateNestedManyWithoutPostsInput
@@ -76,7 +76,7 @@ export type PostUncheckedUpdateInput = {
 
 How the `connect` functionality fits in for category (only available when on standard input type - when all types match):
 
-```
+```javascript
 export type CategoryCreateNestedManyWithoutPostsInput = {
     create?: XOR<Enumerable<CategoryCreateWithoutPostsInput>, Enumerable<CategoryUncheckedCreateWithoutPostsInput>>
     connectOrCreate?: Enumerable<CategoryCreateOrConnectWithoutPostsInput>
