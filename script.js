@@ -31,6 +31,8 @@ async function main() {
         },
     })
 
+
+    console.log(newPost)
 }
 
 main()
